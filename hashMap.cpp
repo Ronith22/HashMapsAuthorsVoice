@@ -1,5 +1,5 @@
-// CISC220: Ansh Desai and Sara Rathore
-// adesai@udel.edu, srathor@udel.edu
+// CISC220: Ronith Anchan
+// ranchan@udel.edu
 #include "hashMap.hpp"
 #include "hashNode.hpp"
 #include <iostream>
@@ -8,22 +8,20 @@
 
 using namespace std;
 
-// Constructor
 hashMap::hashMap(bool hash1, bool coll1) {
     first = "";
     numKeys = 0;
-    mapSize = 101; // Initial size
+    mapSize = 101; 
     h1 = hash1;
     c1 = coll1;
     collisionct1 = 0;
     collisionct2 = 0;
-    map = new hashNode*[mapSize]; // Dynamically allocate array
+    map = new hashNode*[mapSize]; 
     for (int i = 0; i < mapSize; i++) {
-        map[i] = nullptr; // Initialize all entries to NULL
+        map[i] = nullptr; 
     }
 }
 
-// Adds a key-value pair to the hash map
 void hashMap::addKeyValue(string k, string v) {
     int index = getIndex(k);
     if (map[index] == nullptr) { // Slot is empty
@@ -48,7 +46,6 @@ int hashMap::getIndex(string k) {
     }
     int i = 0;
 
-    // Check initial condition
     if (map[index] != nullptr && map[index]->keyword != k) {
         collisionct1++;
     }
@@ -73,7 +70,6 @@ int hashMap::getIndex(string k) {
 }
 
 // Hash function 1
-// Multiply ASCII value by the position (1-based) and sum them
 int hashMap::calcHash(string k) {
     int hash = 0;
     for (int i = 0; i < k.length(); i++) {
@@ -83,7 +79,6 @@ int hashMap::calcHash(string k) {
 }
 
 // Hash function 2
-// Use all N characters of string as an N-digit base-b number
 int hashMap::calcHash2(string k) {
     int hash = 0;
     int base = 5;
@@ -95,13 +90,11 @@ int hashMap::calcHash2(string k) {
 }
 
 // Collision handling method 1
-// Linear Probing
 int hashMap::collHash1(int h, int i, string k) {
     return (h + i) % mapSize;
 }
 
 // Collision handling method 2
-// Quadratic Probing
 int hashMap::collHash2(int h, int i, string k) {
     return (h + i * i) % mapSize;
 }
