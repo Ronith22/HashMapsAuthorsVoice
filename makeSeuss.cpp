@@ -1,5 +1,5 @@
-// CISC220: Ansh Desai and Sara Rathore
-// adesai@udel.edu, srathor@udel.edu
+// CISC220: Ronith Anchan
+// ranchan@udel.edu
 #include "makeSeuss.hpp"
 #include "hashMap.hpp"
 #include <iostream>
@@ -18,12 +18,12 @@ makeSeuss::makeSeuss(string f1,string f2,bool h1, bool c1) {
 };
 
 void makeSeuss::readFile() {
-    ifstream infile(fn.c_str(),ios::in); // open file
+    ifstream infile(fn.c_str(),ios::in); 
     string key = "";
     string value= "";
     infile>> key;
     ht->first = key;
-    while (infile >> value) { // loop getting single characters
+    while (infile >> value) { 
         cout << key <<": " << value << endl;
         ht->addKeyValue(key,value);
         key = value;
