@@ -1,8 +1,8 @@
-// CISC220: Ansh Desai and Sara Rathore
-// adesai@udel.edu, srathor@udel.edu
+// CISC220: Ronith Anchan
+// ranchan@udel.edu
 #include "hashNode.hpp"
-#include <cstdlib> // for rand()
-#include <ctime> // for seeding rand()
+#include <cstdlib> 
+#include <ctime> 
 
 // Default constructor
 hashNode::hashNode() {
@@ -12,48 +12,45 @@ hashNode::hashNode() {
     currSize = 0;
 }
 
-// Constructor with keyword
+
 hashNode::hashNode(string s) {
     keyword = s;
-    valuesSize = 100; // Initial size for the values array
+    valuesSize = 100; 
     currSize = 0;
-    values = new string[valuesSize]; // Dynamically allocate array
+    values = new string[valuesSize]; 
 }
 
-// Constructor with keyword and initial value
+
 hashNode::hashNode(string s, string v) {
     keyword = s;
-    valuesSize = 100; // Initial size for the values array
-    currSize = 1; // Since we're adding one value
-    values = new string[valuesSize]; // Dynamically allocate array
-    values[0] = v; // Add the initial value
+    valuesSize = 100; 
+    currSize = 1; 
+    values = new string[valuesSize]; 
+    values[0] = v; 
 }
 
-// Adds a new value to the array
 void hashNode::addValue(string v) {
     if (currSize >= valuesSize) {
-        dblArray(); // Double the array if there's no space
+        dblArray(); 
     }
-    values[currSize] = v; // Add the value to the end
-    currSize++; // Increment the size
+    values[currSize] = v; 
+    currSize++; 
 }
 
-// Doubles the size of the array
 void hashNode::dblArray() {
-    valuesSize *= 2; // Double the size
-    string* newArray = new string[valuesSize]; // Create a new array
+    valuesSize *= 2; 
+    string* newArray = new string[valuesSize];
     for (int i = 0; i < currSize; i++) {
-        newArray[i] = values[i]; // Copy over the old values
+        newArray[i] = values[i]; 
     }
-    delete[] values; // Delete the old array
-    values = newArray; // Point to the new array
+    delete[] values; 
+    values = newArray; 
 }
 
-// Returns a random string from the values array
 string hashNode::getRandValue() {
     if (currSize == 0) {
-        return ""; // Return empty string if no values
+        return ""; 
     }
-    int randomIndex = rand() % currSize; // Get a random index
-    return values[randomIndex]; // Return the value at that index
+    int randomIndex = rand() % currSize; 
+    return values[randomIndex]; 
 }
